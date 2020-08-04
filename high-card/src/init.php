@@ -59,8 +59,8 @@ function high_card_cgb_block_assets() { // phpcs:ignore
 		'cgbGlobal', // Array containing dynamic data for a JS Global.
 		[
 			'pluginDirPath' => plugin_dir_path( __DIR__ ),
-			'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-			// Add more data here that you want to access from `cgbGlobal` object.
+			'pluginDirUrl'  => plugin_dir_url( __DIR__ ), 
+			
 		]
 	);
 

@@ -11,6 +11,15 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+const {
+    RichText,
+	MediaUpload,
+    InspectorControls // New component!
+} = wp.blockEditor;
+
+
+import { Button } from '@wordpress/components';
+
 
 /**
  * Register: aa Gutenberg Block.
@@ -25,17 +34,50 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/block-high-card', {
-	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'high-card - CGB Block' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+ 
+registerBlockType( 'high-card/block-high-card', { 
+	title: __( 'SidexSide Card' ), // Block title.
+	icon: 'id', 
+	category: 'common', 
 	keywords: [
-		__( 'high-card — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
+		__( 'card' ),
+		__( 'side by side' ),
+		__( 'image' ),
 	],
 
+	// attributes the html elements in block 
+	attributes: {
+		title: {
+			type: 'array',
+			source: 'children',
+			selector: 'h3',
+		},
+		mediaID: {
+			type: 'number',
+		},
+		mediaURL: {
+			type: 'string',
+			source: 'attribute',
+			selector: 'img',
+			attribute: 'src',
+		},
+		description: {
+			type: 'array',
+			source: 'children',
+			selector: '.high-card-description',
+		},
+		
+	},
+	example: {
+		attributes: {
+			title: __( 'Featured', 'high-card' ),
+			mediaURL: 'http://placehold.it/1440x700',
+			description: [
+				__( 'The Process', 'high-card' ),
+			],
+		
+		},
+	},
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
@@ -48,21 +90,81 @@ registerBlockType( 'cgb/block-high-card', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
-		// Creates a <p class='wp-block-cgb-block-high-card'></p>.
+		const {
+			className,
+			attributes: { title, mediaID, mediaURL, description },
+			setAttributes,
+			focus
+		} = props;
+		const onChangeTitle = ( value ) => {
+			setAttributes( { title: value } );
+		};
+
+		const onSelectImage = ( media ) => {
+			setAttributes( {
+				mediaURL: media.url,
+				mediaID: media.id,
+			} );
+		};
+		const onChangeDescription = ( value ) => {
+			setAttributes( { description: value } );
+		};
 		return (
-			<div className={ props.className }>
-				<p>— Hello from the backend.</p>
-				<p>
-					CGB BLOCK: <code>high-card</code> is a new Gutenberg block
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+		
+		<InspectorControls>
+			//This text will show when the box is selected
+		</InspectorControls>,
+		
+		<div className={ props.className }>
+			<RichText
+				tagName="h3"
+				placeholder={__('Name of of Featured Product', 'high-card')}
+				value={ title }
+				onChange={ onChangeTitle }
+			/>
+				
+			<div className="high-card-image">
+				<MediaUpload
+					onSelect={ onSelectImage }
+					allowedTypes="image"
+					value={ mediaID }
+					render={ ( { open } ) => (
+						<Button
+							className={
+								mediaID
+									? 'image-button'
+									: 'button button-large'
+							}
+							onClick={ open }
+						>
+							{ ! mediaID ? (
+								__( 'Upload Image', 'high-card' )
+							) : (
+								<img
+									src={ mediaURL }
+									alt={ __(
+										'High Card Image',
+										'high-card'
+									) }
+								/>
+							) }
+						</Button>
+					) }
+				/>
+				
+			</div>
+				
+			<RichText
+				tagName="div"
+				multiline="p"
+				className="high-card-description"
+				placeholder={ __(
+					'Descriobe image',
+					'gutenberg-examples'
+				) }
+				value={description}
+				onChange={ onChangeDescription}
+			/>
 			</div>
 		);
 	},
@@ -79,20 +181,28 @@ registerBlockType( 'cgb/block-high-card', {
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save: ( props ) => {
+		const {
+			className,
+			attributes: { title, mediaURL, description },
+		} = props;
 		return (
-			<div className={ props.className }>
-				<p>— Hello from the frontend.</p>
-				<p>
-					CGB BLOCK: <code>high-card</code> is a new Gutenberg block.
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+			<div className={ className }>
+				<RichText.Content tagName="h3" value={ title } />
+
+				{ mediaURL && (
+					<img
+						className="high-card-image"
+						src={ mediaURL }
+						alt={ __( 'High Card Image', 'high-card' ) }
+					/>
+				) }
+
+				<RichText.Content
+					tagName="div"
+					className="high-card-description"
+					value={ description}
+				/>
+
 			</div>
 		);
 	},
