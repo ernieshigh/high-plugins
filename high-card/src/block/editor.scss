@@ -6,9 +6,35 @@
  */
 
 .wp-block-high-card-block-high-card{
-  border: 1px solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
-}
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:.5em;  
+    
+
+    .high-card-image {
+        flex-shrink: 0;
+        width: 35%;
+        margin-right: 1em;
+
+        & img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    h3 {
+        font-size: 36px;
+        font-weight: 300;
+        margin: 0 0 22px 0;
+
+        
+        }   
+
+		@media screen and (max-width: 520px) {
+			flex-direction: column;
+		}
+    
+    }
+
+

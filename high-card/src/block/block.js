@@ -88,7 +88,7 @@ registerBlockType( 'high-card/block-high-card', {
 		
 		fontColor: {
 			type: 'string',
-			default: '#888888' // is optional
+			default: '#000' // is optional
 		},
 	},
 	example: {
@@ -101,17 +101,13 @@ registerBlockType( 'high-card/block-high-card', {
 		
 		},
 	},
+	supports: {
+		align: true
+	},
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
-	 *
-	 * The "edit" property must be a valid function.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-	 *
-	 * @param {Object} props Props.
-	 * @returns {Mixed} JSX Component.
-	 */
+	*/
 	edit: ( props ) => {
 		const {
 			className,
