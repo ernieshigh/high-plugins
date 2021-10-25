@@ -1,0 +1,16 @@
+{
+	"apiVersion": 2,
+	"name": "high/high-service",
+	"version": "0.1.0",
+	"title": "High Service",
+	"category": "design",
+	"icon": "admin-site",
+	"description": "A custom block creating image/text card",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "high-service",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}
