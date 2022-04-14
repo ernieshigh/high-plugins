@@ -5,18 +5,21 @@
  */
 
 .wp-block-high-high-service {
-	background-color: #f6f6f6;
+	background-color: #fafafa;
 	display: flex;
-	flex-flow: column wrap;
+	flex-flow: row wrap;
 	align-items: flex-start;
 	justify-content: center;
-	padding: 0;
+	padding: 15px;
 	color: #58A445;
-	border: 1px dotted #58A445;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / .3);
 	
-	h3{
+	
+	
+	.service-title{
+		flex: 0 0 100%;
 		margin: 0;
-		padding: .5rem;
+		padding-bottom: .5rem;
 		font-size: 1.5rem;
 		line-height: 1.5;
 	}
@@ -28,6 +31,11 @@
 		font-size: 1rem;
 	}
 	
+	.wp-block-button{
+		margin-top: 8px;
+	}
+	
+	a.wp-block-button__link{padding: 8px 12px;}
 	/* colors */
 	
 	.has-green-background-color{background-color: #58A445;}
@@ -36,6 +44,4 @@
 	.has-blue-background-color{background-color: #1d2a53;}
 	.has-blue-color{color: #1d2a53;}
 	
-	/* block component */
-	.block-editor-inner-blocks{width: 100%;}
 }

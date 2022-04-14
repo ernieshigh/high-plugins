@@ -1,0 +1,47 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-high-flip-block-high-flip {
+	position: relative; 
+	perspective: 1000px;
+
+	.high-inner-flip {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		transition: transform 0.8s;
+		transform-style: preserve-3d;
+
+		.high-flip-back-background,
+		.high-flip-front-background {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			-webkit-backface-visibility: hidden; /* Safari */
+			backface-visibility: hidden;
+		}
+
+		.high-flip-back-background {
+			transform: rotateY(180deg);
+		}
+	}
+}
+
+.high-flip-back-background-edit,
+.high-flip-front-background-edit {
+	margin: 2em 0;
+	padding: 2em;
+
+	button {
+		margin: 8px 0;
+	}
+
+	h3 {
+		color: #58a445;
+		font-size: 14px;
+		margin: 8px 0;
+	}
+}

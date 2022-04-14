@@ -29,82 +29,144 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
- 
- 
-import {BlockControls, RichText, InnerBlocks, MediaPlaceholder, MediaUpload, InspectorControls, PanelColorSettings, AlignmentToolbar, } from '@wordpress/block-editor';
-import { Panel, PanelBody,  PanelRow,  SelectControl, TextControl, ColorPalette } from '@wordpress/components';
+
+import {
+	BlockControls,
+	RichText,
+	InnerBlocks,
+	MediaPlaceholder,
+	MediaUpload,
+	InspectorControls,
+	PanelColorSettings,
+	AlignmentToolbar,
+} from '@wordpress/block-editor';
+import {
+	Panel,
+	PanelBody,
+	SelectControl,
+	TextControl,
+	ColorPalette,
+	 __experimentalUnitControl as UnitControl,
+	 DimensionControl
+} from '@wordpress/components';
+
+
+import { useState } from '@wordpress/compose';
 
 
 // custom colors for color picker on block
 const high_colors = [
-    {
-        color: '#ffffff',
-        name: 'White',
-    },
-	{	color: '#000000',
-		name: 'Black',
-	},
- 
-    {
-        color: '#58A445',
-        name: 'Green',
-    },
 	{
-		 color: '#1d2a53',
-		 name: 'Blue'
-	}
+		color: '#ffffff',
+		name: 'White',
+	},
+	{ color: '#000000', name: 'Black' },
+
+	{
+		color: '#58A445',
+		name: 'Green',
+	},
+	{
+		color: '#1d2a53',
+		name: 'Blue',
+	},
 ];
 
-export default function Edit( { attributes, isSelected, setAttributes } ) {
-		const { title, alignment, backgroundColor, textColor} = attributes; 
-		const onChangeBackgroundColor = ( newBackgroundColor ) => {
-			setAttributes( { backgroundColor: newBackgroundColor } )
-		}
-		const onChangeTextColor = ( newTextColor ) => {
-			setAttributes( { textColor: newTextColor } )
-		}
-		const TEMPLATE = [
-    [ 'core/heading', {content: 'High Service Title',  className: 'service-heading'} ],
-    [ 'core/image', {} ],
-    [ 'core/paragraph', { content: 'Summary' } ],
-    ];
+export default function Edit({ attributes, isSelected, setAttributes }) {
+	const { title, align, alignment, backgroundColor, textColor, width, borderStyle, borderWidth,borderColor,borderRadius, padding} = attributes;
+	const onChangeBackgroundColor = (newBackgroundColor) => {
+		setAttributes({ backgroundColor: newBackgroundColor });
+	};
+	const onChangeTextColor = (newTextColor) => {
+		setAttributes({ textColor: newTextColor });
+	};
+	const onChangeBorderColor = (newBorderColor) => {
+		setAttributes({ borderColor: newBorderColor });
+	};
 	
-	return ( 	
-			<>
-			<InspectorControls>	
-				<Panel>
-					<PanelRow>
-						<label>Background</label>
-						<ColorPalette 
-							colors={ [ ...high_colors,] }
-							value={ backgroundColor }
-							onChange={onChangeBackgroundColor} // onChange event callback
+	const onChangeBorderWidth = (newBorderWidth) => {
+		setAttributes({ borderWidth: newBorderWidth });
+	};
+	const onChangeBorderRadius = (newBorderRadius) => {
+		setAttributes({ borderRadius: newBorderRadius });
+	};
+	 const units = [
+        { value: 'px', label: 'px', default: 0 },
+        { value: '%', label: '%', default: 10 },
+        { value: 'em', label: 'em', default: 0 },
+    ];
+	const TEMPLATE = [
+		[
+			'core/heading',
+			{ placeholder: 'Add Service Heading', className: 'service-title' },
+		],
+		['core/media-text',
+		{ placeholder: 'Add Service Content', className: 'service-content' }], 
+		['core/button', {}], 
+	];
+
+	return (
+		<>
+			<InspectorControls>
+				<Panel>  
+					<PanelBody
+						title={__('Borders')}
+						initialOpen={false}
+					>
+						<UnitControl
+							label={__("Border Width")}
+							value = {attributes.borderWidth}
+							onChange={(newBorderWidth) => setAttributes({ borderWidth: newBorderWidth })}
 						/> 
-					</PanelRow>
-			
-					<PanelRow>
-						<label>Text Color</label>
-						<ColorPalette // Element Tag for Gutenberg standard colour selector
-							value={ textColor }
-							colors={ [ ...high_colors,] }
-							onChange={onChangeTextColor} // onChange event callback
-						/> 
-					</PanelRow>
+						
+						<SelectControl
+							label={__("Border Style")}
+							value={attributes.borderStyle}
+							options={ [
+								{ label: 'Choose Style', value: '' },
+								{ label: 'Solid', value: 'solid' },
+								{ label: 'Dashed', value: 'dashed' },
+								{ label: 'Dotted', value: 'dotted' },
+								{ label: 'Double', value: 'double' },
+								{ label: 'Grooved', value: 'grooved' },
+								{ label: 'Outset', value: 'outset' },
+								{ label: 'Ridge', value: 'ridge' },
+							] }
+							onChange={(newBorderStyle) => setAttributes({ borderStyle: newBorderStyle })}
+						/>
+						<label> Border Color </label>
+						<ColorPalette   
+							title="Border Color"
+							value={borderColor}
+							colors={[...high_colors]}
+							onChange={onChangeBorderColor} // onChange event callback
+						/>
+						<UnitControl
+							label={__('Border Radius') }
+							value = {attributes.borderRadius} 
+							onChange={onChangeBorderRadius}
+						/>
+					</PanelBody>
+					 
+					
 				</Panel>
-			</InspectorControls>,
-			
-			<div { ...useBlockProps() }   style={{ textAlign: alignment, backgroundColor: backgroundColor, color: textColor}} >
-				<BlockControls>
-					<AlignmentToolbar value={alignment} onChange={(newVal) => setAttributes({alignment: newVal})} />
-				</BlockControls>
-				
-					<InnerBlocks
-					template={ TEMPLATE }
-					templateLock="all"
-				/>
-				
-				
+			</InspectorControls>
+			, 
+			<div
+				{...useBlockProps()}
+				style={{ 
+					backgroundColor: backgroundColor,
+					color: textColor,
+					borderWidth: borderWidth,
+					borderColor: borderColor,
+					borderStyle: borderStyle,
+					borderRadius: borderRadius,
+					padding: padding
+				}}
+			>
+
+				<InnerBlocks template={TEMPLATE} templateLock="all" />
 			</div>
-			</>
-		);
-	}
+		</>
+	);
+}

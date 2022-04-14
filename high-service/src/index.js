@@ -20,18 +20,28 @@ import './style.scss';
 import Edit from './edit';
 import save from './save';
 
-
 /**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-registerBlockType( 'high/high-service', {	// attributes the html elements in block 
+registerBlockType('high/high-service', {
 	
+	supports: {
+		align:true, 
+		spacing: {
+			margin: true,  // Enable margin UI control.
+			padding: true, // Enable padding UI control.
+		},
+		color: { 
+			gradients: true // Enable gradients UI control.
+		}
+	  },
+ 
 	attributes: {
 		title: {
 			type: 'string',
-			selector:' h3',
+			selector: '.service-title',
 			default: 'A High Service',
 		},
 		mediaID: {
@@ -50,15 +60,35 @@ registerBlockType( 'high/high-service', {	// attributes the html elements in blo
 		backgroundColor: {
 			type: 'string',
 		},
-		
+
 		textColor: {
-			type: 'string', 
+			type: 'string',
 		},
-		alignment: {
-		  type: 'string',
-		} 
 		
+		align: {
+			type: 'string'
+		},
+		
+		alignment: {
+			type: 'string'
+		}, 
+		borderStyle: {
+			type: "string",
+		},
+		borderWidth: {
+			type: "string",
+		},
+		borderRadius: {
+			type: "string", 
+		},
+		borderColor: {
+			type: "string",
+		},
+		padding: {
+			type: "string"
+		}
 	},
+	 
 	/**
 	 * @see ./edit.js
 	 */
@@ -68,4 +98,6 @@ registerBlockType( 'high/high-service', {	// attributes the html elements in blo
 	 * @see ./save.js
 	 */
 	save,
-} );
+});
+
+ 

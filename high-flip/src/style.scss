@@ -1,0 +1,60 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-high-flip-block-high-flip {
+	position: relative;
+	background-color: transparent;
+	width: 320px;
+	height: 320px;
+	border: 1px solid #f1f1f1;
+	perspective: 1000px;
+
+	.high-inner-flip {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		transition: transform 0.8s;
+		transform-style: preserve-3d;
+
+		.high-flip-back-background,
+		.high-flip-front-background {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			-webkit-backface-visibility: hidden; /* Safari */
+			backface-visibility: hidden;
+		}
+
+		.high-flip-back-background {
+			transform: rotateY(180deg);
+		}
+		&.vert .high-flip-back-background {
+			transform: rotateX(180deg);
+		}
+		&.vert-r .high-flip-back-background {
+			transform: rotateX(-180deg);
+		}
+		&.hor-r .high-flip-back-background {
+			transform: rotateY(-180deg);
+		}
+	}
+}
+
+.wp-block-high-flip-block-high-flip:hover .high-inner-flip {
+	transform: rotateY(180deg);
+
+	&.vert {
+		transform: rotateX(180deg);
+	}
+	&.vert-r {
+		transform: rotateX(-180deg);
+	}
+	&.hor-r {
+		transform: rotateY(-180deg);
+	}
+}

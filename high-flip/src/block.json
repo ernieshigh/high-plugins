@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "high-flip-block/high-flip",
+	"version": "0.1.0",
+	"title": "High Flip Block",
+	"category": "design",
+	"icon": "flip-vertical",
+	"description": "A custom High Block for creating flip elements",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "high-flip",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

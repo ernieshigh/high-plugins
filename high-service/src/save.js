@@ -4,10 +4,31 @@
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
- 
- 
-import {BlockControls, RichText, InnerBlocks, MediaPlaceholder, MediaUpload, InspectorControls, PanelColorSettings, AlignmentToolbar, } from '@wordpress/block-editor';
-import { Panel, PanelBody,  PanelRow,  SelectControl, TextControl, ColorPalette } from '@wordpress/components';
+
+import {
+	BlockControls,
+	RichText,
+	InnerBlocks,
+	MediaPlaceholder,
+	MediaUpload,
+	InspectorControls,
+	PanelColorSettings,
+	AlignmentToolbar,
+} from '@wordpress/block-editor';
+import {
+	Panel,
+	PanelBody,
+	PanelRow,
+	SelectControl,
+	TextControl,
+	ColorPalette,
+	 __experimentalUnitControl as UnitControl,
+	DimensionControl
+} from '@wordpress/components';
+
+
+
+import { useState } from '@wordpress/compose';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -16,25 +37,37 @@ import { Panel, PanelBody,  PanelRow,  SelectControl, TextControl, ColorPalette 
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 import { useBlockProps } from '@wordpress/block-editor';
-
-
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
- */
-export default function save( { attributes } ) {
+ 
+	const onChangeBorderWidth = (newBorderWidth) => {
+		setAttributes({ borderWidth: newBorderWidth });
+	};
+	const onChangeBorderRadius = (newBorderRadius) => {
+		setAttributes({ borderRadius: newBorderRadius });
+	};
+	const units = [
+		{ value: 'px', label: 'px', default: 0 },
+		{ value: '%', label: '%', default: 10 },
+		{ value: 'em', label: 'em', default: 0 },
+	];
 	
+export default function save({ attributes }) {
 	const blockProps = useBlockProps.save();
-	const { title, alignment, backgroundColor ,textColor } = attributes;
+	const { title, align, alignment, backgroundColor, textColor, width, borderStyle, borderWidth, borderColor, borderRadius, padding} = attributes;
 
-		return ( 		
-			<div {...useBlockProps.save()}   style={{  textAlign: alignment, backgroundColor: backgroundColor, color: textColor}} >
-				<InnerBlocks.Content />
-			</div>
+	return (
+		<div
+			{...useBlockProps.save()}
+			style={{  
+				backgroundColor: backgroundColor,
+				color: textColor,
+				borderWidth: borderWidth,
+				borderColor: borderColor,
+				borderStyle: borderStyle,
+				borderRadius: borderRadius,
+				padding: padding,
+			}}
+		>
+			<InnerBlocks.Content />
+		</div>
 	);
 }

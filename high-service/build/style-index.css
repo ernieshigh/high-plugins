@@ -1,1 +1,59 @@
-.wp-block-high-high-service{align-items:flex-start;background-color:#f6f6f6;box-shadow:0 4px 10px 0 rgba(0,0,0,.3);color:#58a445;display:flex;flex-flow:column wrap;justify-content:center;padding:0}.wp-block-high-high-service h3{font-size:1.5rem;line-height:1.5;margin:0;padding:.5rem}.wp-block-high-high-service p{font-size:1rem;margin:0 auto;padding:1em;width:100%}.wp-block-high-high-service .has-green-background-color{background-color:#58a445}.wp-block-high-high-service .has-green-color{color:#58a445}.wp-block-high-high-service .has-blue-background-color{background-color:#1d2a53}.wp-block-high-high-service .has-blue-color{color:#1d2a53}
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-high-high-service {
+  background-color: #f6f6f6;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 15px;
+  color: #58A445;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3);
+  /* colors */
+}
+.wp-block-high-high-service .service-title {
+  flex: 0 0 100%;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+.wp-block-high-high-service p {
+  width: 100%;
+  padding: 1em;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+.wp-block-high-high-service .wp-block-button {
+  margin-top: 8px;
+}
+.wp-block-high-high-service a.wp-block-button__link {
+  padding: 8px 12px;
+}
+.wp-block-high-high-service .wp-block-button.alignright {
+  justify-self: flex-end;
+}
+.wp-block-high-high-service .has-green-background-color {
+  background-color: #58A445;
+}
+.wp-block-high-high-service .has-green-color {
+  color: #58A445;
+}
+.wp-block-high-high-service .has-blue-background-color {
+  background-color: #1d2a53;
+}
+.wp-block-high-high-service .has-blue-color {
+  color: #1d2a53;
+}
+.wp-block-high-high-service.alignright {
+  justify-content: flex-end;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
