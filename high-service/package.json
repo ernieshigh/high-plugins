@@ -11,14 +11,15 @@
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
     "start": "wp-scripts start",
-    "packages-update": "wp-scripts packages-update"
+    "packages-update": "wp-scripts packages-update",
+	"plugin-zip": "wp-scripts plugin-zip"
   },
   "dependencies": {
-    "@wordpress/block-editor": "^3.9.1",
-    "@wordpress/blocks": "^6.14.1",
-    "@wordpress/i18n": "^4.2.3"
+    "@wordpress/block-editor": "^8.5.1",
+    "@wordpress/blocks": "^11.5.1",
+    "@wordpress/i18n": "^4.6.0"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^22.2.1"
+    "@wordpress/scripts": "^6.2.0"
   }
 }
