@@ -24,8 +24,9 @@ import save from './save';
  */
 registerBlockType('high-flip-block/high-flip', {
 	
-	supports: { 
-	  },
+	 supports: { // Hey WP, I want to use your alignment toolbar!
+        align: true, 
+    },
  
 	attributes: {
 		backgroundColor:{
@@ -46,6 +47,18 @@ registerBlockType('high-flip-block/high-flip', {
 			type: "string",
 			default: "cover",
 		},
+		borderStyle: {
+			type: "string",
+		},
+		borderWidth: {
+			type: "string",
+		},
+		borderRadius: {
+			type: "string", 
+		},
+		borderColor: {
+			type: "string",
+		}, 
 		backBackgroundColor:{
 			type: "string",
 		},
@@ -63,9 +76,18 @@ registerBlockType('high-flip-block/high-flip', {
 		backBackgroundSize: {
 			type: "string",
 			default: "cover",
+		}, 
+		backBorderStyle: {
+			type: "string",
 		},
-		textColor: {
-			type: 'string',
+		backBorderWidth: {
+			type: "string",
+		},
+		backBorderRadius: {
+			type: "string", 
+		},
+		backBorderColor: {
+			type: "string",
 		}, 
 		height: {
 			type: "number", 
@@ -73,37 +95,66 @@ registerBlockType('high-flip-block/high-flip', {
 		width: {
 			type: 'string', 
 		},
-		padding:{
-			type: 'string'
-		},
 		flipDirection: {
 			type: "string"
+		},  
+		subheading: {
+		  type: 'string',
 		},
+		heading: {
+		  type: 'string',
+		},
+		content: {
+		  type: 'string',
+		},
+		subheadingColor: {
+		  type: 'string',
+		},
+		headingColor: {
+		  type: 'string',
+		},
+		contentColor:{
+			type: 'string',
+		},
+		subheadingAlign: {
+		  type: 'string',
+		},
+		headingAlign: {
+		  type: 'string',
+		},  
 		contentAlign: {
-			type: "string",
-			default: "center",
+		  type: 'string',
 		},
-		frontText: {
-			type: "string",
+		backSubheading: {
+		  type: 'string',
 		},
-		frontBackground: {
-			type: "string",
+		backHeading: {
+		  type: 'string',
 		},
-		backText: {
-			type: "string",
+		backContent: {
+		  type: 'string',
 		},
-		backBackground: {
-			type: "string",
+		backSubheadingColor: {
+		  type: 'string',
 		},
-		buttonBg: {
-			type: "string",
+		backHeadingColor: {
+		  type: 'string',
 		},
-		buttonText: {
-			type: "string",
+		backContentColor: {
+		  type: 'string',
+		}, 
+		backContentAlign: {
+		  type: 'string',
+		},
+		backSubheadingAlign: {
+		  type: 'string',
+		},
+		backHeadingAlign: {
+		  type: 'string',
 		},
 		panelSwitch: {
 			type: "boolean",
-		},
+		}, 
 	},
 	
  /* @see ./edit.js

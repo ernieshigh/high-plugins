@@ -9,14 +9,16 @@ import { __ } from '@wordpress/i18n';
 import {
 	BlockControls, 
 	RichText,
-	InnerBlocks,
 	MediaPlaceholder, 
 	InspectorControls,
 	PanelColorSettings,
 	AlignmentToolbar, 
+	BlockAlignmentToolbar,
 	MediaUpload, 
 	MediaUploadCheck ,
+	
 } from '@wordpress/block-editor';
+
 
 
 import {
@@ -28,7 +30,8 @@ import {
 	SelectControl,
 	RangeControl,
 	TextControl,
-	ColorPalette,
+	ColorPalette, 
+	ColorPicker,
 	ButtonGroup,
 	Button,
 	Dashicon, 
@@ -66,36 +69,51 @@ import { useBlockProps } from '@wordpress/block-editor';
 export default function save({ attributes, isSelected, setAttributes ,className}) {
 	
  
+	const {
+		alignment,
+		backgroundColor,
+		backgroundImage,
+		backgroundPosition,
+		backgroundAttachment,
+		backgroundRepeat,
+		backgroundSize,
+		borderWidth,
+		borderStyle,
+		borderColor,
+		borderRadius,
+		backBackgroundColor,
+		backBackgroundImage,
+		backBackgroundPosition,
+		backBackgroundAttachment,
+		backBackgroundRepeat,
+		backBackgroundSize, 
+		backBorderStyle,
+		backBorderColor,
+		backBorderWidth,
+		backBorderRadius,  
+		height,
+		width, 
+		subheading,
+		heading,
+		content,
+		subheadingColor,
+		headingColor,
+		contentColor,
+		subheadingAlign,
+		headingAlign,
+		contentAlign,
+		backSubheading,
+		backHeading,
+		backContent,
+		backSubheadingColor,
+		backHeadingColor,
+		backContentColor,
+		backSubheadingAlign,
+		backHeadingAlign,
+		backContentAlign,
+		panelSwitch, 
+	} = attributes;
 	
-
-
-	const {	 
-			backgroundColor,
-			backBackgroundColor,
-			backgroundImage,
-			backgroundPosition,
-			backgroundAttachment,
-			backgroundRepeat,
-			backgroundSize,
-			backBackgroundImage,
-			backBackgroundPosition,
-			backBackgroundAttachment,
-			backBackgroundRepeat,
-			backBackgroundSize, 
-			height,
-			width,
-			padding,
-			flipDirection,
-			frontText,
-			frontBackground,
-			backtext,
-			backBackground,
-			buttonBg,
-			buttonText,
-			panelSwitch,
-		} = attributes;
-	  
-	 
 	 
 	return (
 	
@@ -104,7 +122,6 @@ export default function save({ attributes, isSelected, setAttributes ,className}
 			style={{
 				height: height,
 				width: width,
-				padding: padding
 			}}
 		> 
 			<div className={"high-inner-flip " + attributes.flipDirection}>
@@ -114,7 +131,16 @@ export default function save({ attributes, isSelected, setAttributes ,className}
 								backgroundPosition: backgroundPosition,
 								backgroundSize: backgroundSize,
 								backgroundRepeat: backgroundRepeat,
+								borderWidth: borderWidth,
+								borderColor: borderColor,
+								borderStyle: borderStyle,
+								borderRadius: borderRadius,
 							}}>
+					 
+					<RichText.Content tagName="h3" className='flip-subhead front-subheading' value={ attributes.subheading } style ={{color:subheadingColor, textAlign: subheadingAlign}}/>
+					<RichText.Content tagName="h2" className='flip-head front-heading' value={ attributes.heading } style ={{color:headingColor, textAlign: headingAlign}} />
+					<RichText.Content tagName="p" className='flip-content front-content' value={ attributes.content } style ={{color:contentColor, textAlign: contentAlign}}/>
+
 				</div>
 		
 				<div className={'high-flip-back-background'}style={{ 
@@ -123,7 +149,16 @@ export default function save({ attributes, isSelected, setAttributes ,className}
 								backgroundPosition: backBackgroundPosition,
 								backgroundSize: backBackgroundSize,
 								backgroundRepeat: backBackgroundRepeat,
+								borderWidth: backBorderWidth,
+								borderColor: backBorderColor,
+								borderStyle: backBorderStyle,
+								borderRadius: backBorderRadius,
 							}}>
+							
+					
+					<RichText.Content tagName="h3" className='flip-subhead back-subheading' value={ attributes.backSubheading } style ={{color:backSubheadingColor, textAlign: backSubheadingAlign}}/>
+					<RichText.Content tagName="h2" className='flip head back-heading' value={ attributes.backHeading } style ={{color:backHeadingColor, textAlign: backHeadingAlign}} />
+					<RichText.Content tagName="p" className='flip-content back-content' value={ attributes.backContent } style ={{color:backContentColor, textAlign: backContentAlign}}/>
 				</div>
 			</div>
 		</div>
