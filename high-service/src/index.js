@@ -29,49 +29,12 @@ registerBlockType('high/high-service', {
 	
 	supports: {
 		align:true, 
-		spacing: {
-			margin: true,  // Enable margin UI control.
-			padding: true, // Enable padding UI control.
-		},
-		color: { 
-			gradients: true // Enable gradients UI control.
-		}
 	  },
  
-	attributes: {
-		title: {
-			type: 'string',
-			selector: '.service-title',
-			default: 'A High Service',
-		},
-		mediaID: {
-			type: 'number',
-		},
-		mediaURL: {
-			type: 'string',
-			selector: 'img',
-			attribute: 'src',
-		},
-		description: {
-			type: 'array',
-			source: 'children',
-			selector: '.high-service-description',
-		},
-		backgroundColor: {
-			type: 'string',
-		},
-
-		textColor: {
-			type: 'string',
-		},
-		
+	attributes: {  
 		align: {
 			type: 'string'
 		},
-		
-		alignment: {
-			type: 'string'
-		}, 
 		borderStyle: {
 			type: "string",
 		},
@@ -83,10 +46,7 @@ registerBlockType('high/high-service', {
 		},
 		borderColor: {
 			type: "string",
-		},
-		padding: {
-			type: "string"
-		}
+		}, 
 	},
 	 
 	/**

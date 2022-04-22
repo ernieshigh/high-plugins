@@ -43,11 +43,12 @@ import {
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
+	PanelHeader,
 	SelectControl,
 	TextControl,
 	ColorPalette,
-	 __experimentalUnitControl as UnitControl,
-	 DimensionControl
+	 __experimentalUnitControl as UnitControl, 
 } from '@wordpress/components';
 
 
@@ -73,13 +74,8 @@ const high_colors = [
 ];
 
 export default function Edit({ attributes, isSelected, setAttributes }) {
-	const { title, align, alignment, backgroundColor, textColor, width, borderStyle, borderWidth,borderColor,borderRadius, padding} = attributes;
-	const onChangeBackgroundColor = (newBackgroundColor) => {
-		setAttributes({ backgroundColor: newBackgroundColor });
-	};
-	const onChangeTextColor = (newTextColor) => {
-		setAttributes({ textColor: newTextColor });
-	};
+	const {borderStyle, borderWidth,borderColor,borderRadius} = attributes;
+	 
 	const onChangeBorderColor = (newBorderColor) => {
 		setAttributes({ borderColor: newBorderColor });
 	};
@@ -90,7 +86,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 	const onChangeBorderRadius = (newBorderRadius) => {
 		setAttributes({ borderRadius: newBorderRadius });
 	};
-	 const units = [
+	const units = [
         { value: 'px', label: 'px', default: 0 },
         { value: '%', label: '%', default: 10 },
         { value: 'em', label: 'em', default: 0 },
@@ -110,58 +106,56 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 			<InspectorControls>
 				<Panel>  
 					<PanelBody
-						title={__('Borders')}
+						title={__('Styling')}
 						initialOpen={false}
 					>
-						<UnitControl
-							label={__("Border Width")}
-							value = {attributes.borderWidth}
-							onChange={(newBorderWidth) => setAttributes({ borderWidth: newBorderWidth })}
-						/> 
-						
-						<SelectControl
-							label={__("Border Style")}
-							value={attributes.borderStyle}
-							options={ [
-								{ label: 'Choose Style', value: '' },
-								{ label: 'Solid', value: 'solid' },
-								{ label: 'Dashed', value: 'dashed' },
-								{ label: 'Dotted', value: 'dotted' },
-								{ label: 'Double', value: 'double' },
-								{ label: 'Grooved', value: 'grooved' },
-								{ label: 'Outset', value: 'outset' },
-								{ label: 'Ridge', value: 'ridge' },
-							] }
-							onChange={(newBorderStyle) => setAttributes({ borderStyle: newBorderStyle })}
-						/>
-						<label> Border Color </label>
-						<ColorPalette   
-							title="Border Color"
-							value={borderColor}
-							colors={[...high_colors]}
-							onChange={onChangeBorderColor} // onChange event callback
-						/>
-						<UnitControl
-							label={__('Border Radius') }
-							value = {attributes.borderRadius} 
-							onChange={onChangeBorderRadius}
-						/>
-					</PanelBody>
-					 
-					
-				</Panel>
-			</InspectorControls>
+						<PanelRow>
+							<PanelHeader>Borders</PanelHeader>
+								
+								<UnitControl
+									label={__("Border Width")}
+									value = {attributes.borderWidth}
+									onChange={(newBorderWidth) => setAttributes({ borderWidth: newBorderWidth })}
+								/> 
+								<SelectControl
+									label={__("Border Style")}
+									value={attributes.borderStyle}
+									options={ [
+										{ label: 'Choose Style', value: '' },
+										{ label: 'Solid', value: 'solid' },
+										{ label: 'Dashed', value: 'dashed' },
+										{ label: 'Dotted', value: 'dotted' },
+										{ label: 'Double', value: 'double' },
+										{ label: 'Grooved', value: 'grooved' },
+										{ label: 'Outset', value: 'outset' },
+										{ label: 'Ridge', value: 'ridge' },
+									] }
+									onChange={(newBorderStyle) => setAttributes({ borderStyle: newBorderStyle })}
+								/>
+								<h4> Border Color </h4>
+								<ColorPalette   
+									title="Border Color"
+									value={borderColor}
+									colors={[...high_colors]}
+									onChange={onChangeBorderColor} // onChange event callback
+								/>
+								<UnitControl
+									label={__('Border Radius') }
+									value = {attributes.borderRadius} 
+									onChange={onChangeBorderRadius}
+								/>
+							</PanelRow>
+						</PanelBody>
+					</Panel>
+				</InspectorControls>
 			, 
 			<div
 				{...useBlockProps()}
-				style={{ 
-					backgroundColor: backgroundColor,
-					color: textColor,
+				style={{  
 					borderWidth: borderWidth,
 					borderColor: borderColor,
 					borderStyle: borderStyle,
 					borderRadius: borderRadius,
-					padding: padding
 				}}
 			>
 

@@ -11,37 +11,64 @@
 	align-items: flex-start;
 	justify-content: center;
 	padding: 15px;
-	color: #58A445;
-    box-shadow: 0 4px 10px 0 rgb(0 0 0 / .3);
-	
-	
-	
-	.service-title{
+	color: #58a445;
+	box-shadow: 0 4px 10px 0 rgb(0 0 0 / 0.3);
+
+	.service-title {
 		flex: 0 0 100%;
 		margin: 0;
-		padding-bottom: .5rem;
+		padding-bottom: 0.5rem;
 		font-size: 1.5rem;
 		line-height: 1.5;
 	}
-	
-	p{
+
+	p {
 		width: 100%;
 		padding: 1em;
 		margin: 0 auto;
 		font-size: 1rem;
 	}
-	
-	.wp-block-button{
+
+	.wp-block-button {
 		margin-top: 8px;
 	}
-	
-	a.wp-block-button__link{padding: 8px 12px;}
+
+	a.wp-block-button__link {
+		padding: 8px 12px;
+	}
 	/* colors */
-	
-	.has-green-background-color{background-color: #58A445;}
-	.has-green-color{color: #58A445;}
-	
-	.has-blue-background-color{background-color: #1d2a53;}
-	.has-blue-color{color: #1d2a53;}
-	
+
+	.has-green-background-color {
+		background-color: #58a445;
+	}
+	.has-green-color {
+		color: #58a445;
+	}
+
+	.has-blue-background-color {
+		background-color: #1d2a53;
+	}
+	.has-blue-color {
+		color: #1d2a53;
+	}
+}
+
+
+.block-editor-block-inspector {
+	.components-panel__header {
+		flex-basis: 100%;
+		padding-left: 0;
+		font-size: 16px;
+	}
+
+	.components-panel__row {
+		flex-wrap: wrap;
+
+		.components-unit-control-wrapper,
+		.components-base-control {
+			flex: 0 0 55%;
+			margin-top: 1em;
+			margin-bottom: 0;
+		}
+	}
 }

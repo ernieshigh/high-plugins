@@ -19,6 +19,7 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
+	PanelHeader,
 	SelectControl,
 	TextControl,
 	ColorPalette,
@@ -52,19 +53,16 @@ import { useBlockProps } from '@wordpress/block-editor';
 	
 export default function save({ attributes }) {
 	const blockProps = useBlockProps.save();
-	const { title, align, alignment, backgroundColor, textColor, width, borderStyle, borderWidth, borderColor, borderRadius, padding} = attributes;
+	const {borderStyle, borderWidth, borderColor, borderRadius} = attributes;
 
 	return (
 		<div
 			{...useBlockProps.save()}
-			style={{  
-				backgroundColor: backgroundColor,
-				color: textColor,
+			style={{   
 				borderWidth: borderWidth,
 				borderColor: borderColor,
 				borderStyle: borderStyle,
 				borderRadius: borderRadius,
-				padding: padding,
 			}}
 		>
 			<InnerBlocks.Content />
