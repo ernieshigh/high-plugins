@@ -1,0 +1,9 @@
+/***
+	*
+	* Custom Admin CSS for this plugin
+	*
+***/
+
+img.custom_preview_image {
+    max-width: 100%;
+}

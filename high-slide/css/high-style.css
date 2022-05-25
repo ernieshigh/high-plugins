@@ -1,0 +1,39 @@
+/***
+	*
+	* Custom CSS for this plugin
+	*
+***/
+
+.high-form-wrap {
+    position: fixed;
+    top: 22%;
+	left: 33%;
+    background-color: #5bb959b3;
+    width: 45vw;
+    height: auto;
+    padding: 1em;
+	 box-shadow: 0 0 10px #000000;
+	z-index: 99;
+}
+
+
+#scroll-block form{
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+
+#scroll-block input[type="text"], 
+#scroll-block input[type="email"]{
+	max-width: 50%;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+
+#scroll-block h3 {
+	margin: 0 auto;
+    text-align: center;
+}
