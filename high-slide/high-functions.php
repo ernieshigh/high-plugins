@@ -69,7 +69,7 @@ $custom_high_fields = array(
 );
 
 
-
+// wtf now
 function show_high_meta_box() {
 global $custom_high_fields, $post;
 // Use nonce for verification
